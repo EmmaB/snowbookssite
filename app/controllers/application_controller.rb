@@ -7,13 +7,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :current_user_variables
 
-    before_filter :check_url
+    # before_filter :check_url
     after_filter :browser_detection
   # end
 
-  def check_url
-    redirect_to "http://snowbooks.bibliocloud.com"  if request.host.match /snowbooks.com/i
-  end
+  # def check_url
+  #   redirect_to "http://snowbooks.bibliocloud.com"  if request.host.match /snowbooks.com/i
+  # end
 
 
   def browser_detection
