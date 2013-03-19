@@ -8,7 +8,6 @@
         =flash[:notice]
   .row
     %aside.span4.box_theme#blog_links
-
       = form_tag posts_path, method: :get do
         %p
           = text_field_tag :query, params[:query]
@@ -20,13 +19,13 @@
           - posts.each do |post|
             %li.post_links
               = link_to post_path(post) do
-                = strip_tags(post.title)
+                = raw sanitize strip_tags(post.title)
     %section.span8.blog_posts
       - @posts.limit(10).order('created_at DESC').each do |post|
         .article.box_theme
           %header
             %h2.blog_post_title
-              = raw sanitize post.title
+              = raw sanitize strip_tags(post.title)
           %p.posted_by
             = "posted on "
             %time{datetime: post.created_at.strftime('%FT$H:%M$z'), pubdate: ""}
@@ -34,13 +33,13 @@
             - if post.user_id
               = "by #{post.user.first_name}"
           .blog_body
-            = raw post.body
+            = raw simple_format post.body
             %p
             - unless post.extended_body.blank?
               %details.animated
                 %summary Read more...
                 .blog_body
-                  = raw post.extended_body
+                  = raw simple_format post.extended_body
             %p
               = raw post.excerpt
             %hr

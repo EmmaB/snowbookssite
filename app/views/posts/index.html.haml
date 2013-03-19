@@ -37,16 +37,18 @@
               = post.created_at.strftime('%d %B %Y')
             - if post.user_id
               = "by #{post.user.first_name}"
+            - else
+              = "by #{post.author_name}"
           .blog_body
-            = raw post.body
+            = raw simple_format post.body
             %p
             - unless post.extended_body.blank?
               %details.animated
                 %summary Read more...
                 .blog_body
-                  = raw post.extended_body
+                  = raw simple_format post.extended_body
             %p
-              = raw post.excerpt
+              = raw simple_format post.excerpt
             %hr
           %section#blog_comments
             = facebook_like_from_index(post)

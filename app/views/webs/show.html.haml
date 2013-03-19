@@ -9,7 +9,7 @@
         .ai
           %p.narrow
             %strong Title:
-            = @web.book.prefix 
+            = @web.book.prefix
             = @web.book.title
           %p.narrow
             %strong Author:
@@ -24,7 +24,7 @@
             = price = @web.book.default_price_amount
           %p.narrow
             %strong Pub date:
-            = @web.book.pub_date.blank? ? "-" : @web.book.pub_date.strftime("%d %B '%y")  
+            = @web.book.pub_date.blank? ? "-" : @web.book.pub_date.strftime("%d %B '%y")
           %p.narrow
             %strong Availability:
             = Supplydetail.description(@web.book)
@@ -33,7 +33,7 @@
             = @web.book.work.main_subject.blank? ? "-" : @web.book.work.main_subject
           %p.narrow
             %strong Format:
-            = @web.book.translated_format 
+            = @web.book.translated_format
           %p
             Buy or preorder now from
             %a{ :href => amazon_url_helper(@web.book, company) } Amazon.co.uk
@@ -49,16 +49,16 @@
                 .span2
                   = related["Format"]
 
-    %section.span8    
+    %section.span8
       .article.box_theme
 
         = image_tag @cover, {:alt => "cover image", :class => "big_cover"}
-        %h3 
+        %h3
           About
           = @web.book.prefix
           = @web.book.title
         %p
-          != raw  Marketingtext.get_text(@web.book, :blurb)
+          != raw  strip_tags(Marketingtext.get_text(@web.book, :blurb))
         = render :partial => "contributor", :collection => get_contributor_details(@web.book)
         %h3 Reviews
         %p

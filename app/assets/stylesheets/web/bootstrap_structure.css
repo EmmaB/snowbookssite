@@ -155,7 +155,7 @@
   .uneditable-input {
     margin-left: 0;
   }
- 
+
 }
 @media (min-width: 1200px) {
   .row {
@@ -455,7 +455,7 @@
   .nav-collapse .dropdown-menu a:hover {
     background-color: #222222;
   }
- 
+
   .nav-collapse .dropdown-menu {
     position: static;
     top: auto;
@@ -478,7 +478,7 @@
   .nav-collapse .dropdown-menu .divider {
     display: none;
   }
-  
+
   .nav-collapse,
   .nav-collapse.collapse {
     height: 0;
@@ -660,5 +660,9 @@
   textarea,
   .uneditable-input {
     margin-left: 0;
+    color: grey;
+
   }
 }
+
+
