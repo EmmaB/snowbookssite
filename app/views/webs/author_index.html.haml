@@ -1,0 +1,49 @@
+.container
+  .row
+    %header.box_theme#page_title
+      %h1 Our authors
+  .row
+    %aside.span4.box_theme#subtitle
+      %h2 
+        = "Authors at #{@company_name}" unless @company_name.nil?
+      %p
+        = link_to "Browse by category instead.", webs_path 
+      %p
+        = link_to "Browse by author instead.", author_index_webs_path
+      %p
+        = link_to "Look at our official catalogue.", catalogue_webs_path
+        Browse our titles by author here. You can also search for them using any part of their name. 
+      = form_tag author_index_webs_path, method: :get do
+        %p
+          = text_field_tag :query, params[:query]
+          = submit_tag "Search", name: nil, :class => 'btn-success-narrow'
+    %section.span8    
+      .article.box_theme
+        = will_paginate @contribs, :renderer => BootstrapPagination::Rails  
+        #accordion2.accordion  
+          - @contribs.each_with_index do |contrib, i|     
+            - collapse_string = "collapse#{i}"  
+            %h2
+              %ul#myTab.nav.nav-tabs
+                %li.active
+                  = link_to contrib.person_name_inverted, author_show_web_path(contrib), :html_options => {"data-toggle" => "tab"}
+
+            #myTabContent.tab-content
+              #home.tab-pane-cat.fade.in.active
+                .row
+                  .category_section
+                  - @summaries_by_contrib[contrib.id][0..11].each do |feature|
+                    = link_to image_tag(feature[:cover], :class => "product_image_tiny"), web_path(feature[:web])
+                  %section#category_fold  
+                    %details.animated
+                      %summary
+                        Details
+                      %p.gap
+                        = render :partial => "summary", :collection => @summaries_by_contrib[contrib.id]
+
+
+
+
+
+
+

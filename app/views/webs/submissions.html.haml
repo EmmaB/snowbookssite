@@ -1,0 +1,18 @@
+.container
+  .row
+    %header.box_theme#page_title
+      %h1 Submissions
+
+  .row
+    %aside.span4.box_theme#subtitle
+
+      %h2
+        Submissions to Snowbooks
+
+    %section.span8
+      .article.box_theme
+        = raw Company.find(1).text( :submissions )
+
+
+
+

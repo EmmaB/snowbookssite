@@ -1,0 +1,15 @@
+= semantic_form_for(@post) do |f| 
+  = f.inputs :class => :main, :name => 'Post' do
+    = f.input :company_id, :as => :hidden, :value => user_company_root.try(:id)
+    = f.input :user_id, :as => :hidden, :value => current_user.id, :required => true
+    = f.input :client_id, :as => :hidden, :value => current_user.client_id
+    = f.input :title
+    = f.input :body
+    = f.input :extended_body
+    = f.input :excerpt, :label => "Footnotes"
+    = f.input :status, :as => :select, :collection => ["Publish", "Draft"]
+
+  = f.actions  do
+    = f.submit "#{t('save')}", :class => 'save'
+
+

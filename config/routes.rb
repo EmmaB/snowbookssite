@@ -48,7 +48,26 @@ Snowbookssite::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'webs#home'
+resources :webs do
+  get 'author_show', :on => :member
+  collection do
+    get 'home'
+    get 'about'
+    get 'contact'
+    get 'submissions'
+    get 'rights'
+    get 'catalogue'
+    get 'blog'
+    get 'author_index'
+    get 'alphabetical'
+    get 'single_cat'
+  end
+end
+  resources :posts do
+    resources :comments
+    # member { post :mercury }
+  end
 
   # See how all your routes lay out with "rake routes"
 

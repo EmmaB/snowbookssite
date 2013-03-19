@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @comment.user_id %>
+</p>
+
+<p>
+  <b>Client:</b>
+  <%= @comment.client_id %>
+</p>
+
+<p>
+  <b>Contact:</b>
+  <%= @comment.contact_id %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%= @comment.author %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @comment.email %>
+</p>
+
+<p>
+  <b>Ip:</b>
+  <%= @comment.ip %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @comment.url %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @comment.body %>
+</p>
+
+<p>
+  <b>Published:</b>
+  <%= @comment.published %>
+</p>
+
+<p>
+  <b>Post:</b>
+  <%= @comment.post_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_comment_path(@comment) %> |
+<%= link_to 'Back', comments_path %>

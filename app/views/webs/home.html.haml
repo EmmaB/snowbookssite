@@ -1,0 +1,85 @@
+.blue-header
+  #myCarousel.carousel.slide
+    .carousel-inner
+      .item.active
+        <div class="image-center">
+        =link_to image_tag("#{static_root}/fantasy.jpg", :class => :center), webs_path
+        </div>
+        .carousel-caption
+          %h4 .
+      .item
+        <div class="image">
+        =link_to image_tag("#{static_root}/horror.jpg", :class => :center), webs_path
+        </div>
+        .carousel-caption
+          %h4 .
+      .item
+        <div class="image">
+        =link_to image_tag("#{static_root}/steampunk.jpg", :class => :center), webs_path
+        </div>
+        .carousel-caption
+          %h4 .
+<!--[if lt IE 9]>
+
+.container
+  .row
+    %aside.span4.box_theme#blog_links
+      %div{:id => "text#{Company.text( :contact )}", "data-mercury" => "full"}
+        %h3= raw sanitize current_company.text( :contact )
+    %section.span8.blog_posts
+      .article.box_theme
+        %h3 Featured titles
+        %p Here are some of our favourite books that are out at the moment.
+        #accordion2.accordion
+          - @features.each_with_index do |(cat_name, array_of_books), i|
+            %h2
+              %ul#myTab.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#home"}= cat_name
+
+              #myTabContent.tab-content
+                #home.tab-pane.fade.in.active
+                  .row
+                    .category_section
+                    - array_of_books[0..5].each do |feature|
+                      = link_to image_tag(feature[:cover], :class => "product_image_tiny"), web_path(feature[:web])
+
+
+
+
+<![endif]-->
+
+<![if !IE]>
+.row-fluid
+  .span3.homepage_welcome_sidebar
+    %div{:id => "text#{Company.text( :home_page_headline )}", "data-mercury" => "full"}
+      %h2= raw sanitize current_company.text( :home_page_headline )
+    %div{:id => "text#{Company.text( :home_page_text )}", "data-mercury" => "full"}
+      %p= raw sanitize current_company.text( :home_page_text )
+    %p Visit our author pages to browse by author #{link_to "more", author_index_webs_path}
+    %p We update the blog frequently and so it's the best place to catch up on our news, ideas and thoughts.
+    %p= link_to "Read our blog", blog_webs_path
+    %p Browse and buy books direct from us #{link_to "more", webs_path}
+    %h2 About us
+    %div{:id => "text#{Company.text( :home_page_about_us )}", "data-mercury" => "full"}
+      = raw sanitize current_company.text( :home_page_about_us )
+    %div{:id => "text#{Company.text( :home_page_sidebar_heading )}", "data-mercury" => "full"}
+      %h2= raw sanitize current_company.text( :home_page_sidebar_heading )
+    %div{:id => "text#{Company.text( :home_page_sidebar_content )}", "data-mercury" => "full"}
+      %p= raw sanitize current_company.text( :home_page_sidebar_content )
+    %div{:id => "text#{Company.text( :home_page_features_heading )}", "data-mercury" => "full"}
+      %h2= raw sanitize current_company.text( :home_page_features_heading )
+    %div{:id => "text#{Company.text( :home_page_features_content )}", "data-mercury" => "full"}
+      %p= raw sanitize current_company.text( :home_page_features_content )
+    %hr.big
+  %section.span6
+    .article.box_theme
+      %h3 Featured titles
+      %p Here are some of our favourite books that are out at the moment. Click on 'details' if you'd like to find out more.
+      %ul.thumbnails
+        = render :partial => "feature", :locals => { :features => @features }
+  .span3.rights_info
+    %div{:id => "text#{Company.text( :contact )}", "data-mercury" => "full"}
+      %h3= raw sanitize current_company.text( :contact )
+<![endif]-->
+

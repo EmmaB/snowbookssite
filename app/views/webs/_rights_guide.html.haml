@@ -1,0 +1,47 @@
+.row
+  - collection.each do |work|
+    .span9
+      %h2
+        = work.title
+      %p
+        %h5
+          = "Rights territory:"
+          - if work.contract
+            = work.contract.territory 
+            %p
+              Rights controlled:
+              - work.contract.righttypes.each do |righttype|
+                = righttype.right_type
+                |
+      %p
+        = "Rights sold:"
+        - unless work.foreignrights.first
+          All available
+        - work.foreignrights.each do |right|
+          - unless right.rightstype == "Translation" || right.rightstype.blank?
+            = Righttype.type(right)
+            = right.language 
+            |
+      - if work.books.first
+        %p
+          = Marketingtext.get_text(work.books.first, :blurb)
+      %p
+      - if work.books.first
+        %h4 UK Editions: 
+        -  work.books.each do |book|
+          - present book do |book_presenter| #present method defined in application helper. 
+            %p.med
+              = book.isbn
+              = book.translated_format
+              = "#{book.default_contributor_first_name} #{book.default_contributor_last_name}"
+              - if book.default_price_amount?
+                = current_company_curr
+                = book.default_price_amount
+              = book_presenter.pretty_date(:pub_date)   
+      %hr  
+                        
+    .span2
+      - if work.books.first  
+        - cover = work.books.first.supportingresources.last
+        - if cover
+          = image_tag cover.image.url(:thumb), {:class => 'product_image'}

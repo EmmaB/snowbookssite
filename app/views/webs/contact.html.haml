@@ -1,0 +1,12 @@
+.container
+  .row
+    %header.box_theme#page_title
+      %h1 Contact us
+  .row
+    %aside.span4.box_theme#subtitle
+      %h2
+        Contact Snowbooks
+
+    %section.span8
+      .article.box_theme
+        = raw sanitize Company.find(1).text( :contact )

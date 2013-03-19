@@ -1,0 +1,18 @@
+%object
+  %form{:target=> "paypal", :action=> "https://www.paypal.com/cgi-bin/webscr", :method=> "post" }
+    %input{:type=> "image", :class=> "basket",
+            :name => "submit", :alt => "Make payments with PayPal - it's fast, free and secure!",
+            :src=> "#{(region == :uk) ? 'https://s3-eu-west-1.amazonaws.com/bibliocloudimages/static/ukbuy.jpg' : 'https://s3-eu-west-1.amazonaws.com/bibliocloudimages/static/overseasbuy.jpg'}" }
+    %img{:alt=> " ", :src=> "https://www.paypal.com/en_GB/i/scr/pixel.gif", :width=> "1", :height=> "1" }
+    %input{:type=> "hidden", :name=> "add", :value=> "1" }
+    %input{:type=> "hidden", :name=> "cmd", :value=> "_cart" }
+    %input{:type=> "hidden", :name=> "business", :value=> "#{company.email_address }" }
+    %input{:type=> "hidden", :name=> "item_:name", :value=> "#{book.title}" }
+    %input{:type=> "hidden", :name=> "item_number", :value=> "#{book.isbn}" }
+    %input{:type=> "hidden", :name=> "amount", :value=> "#{price}" }
+    %input{:type=> "hidden", :name=> "shipping", :value=> "0" }
+    %input{:type=> "hidden", :name=> "no_shipping", :value=> "0" }
+    %input{:type=> "hidden", :name=> "no_note", :value=> "1" }
+    %input{:type=> "hidden", :name=> "currency_code", :value=> "GBP" }
+    %input{:type=> "hidden", :name=> "lc", :value=> "GB" }
+    %input{:type=> "hidden", :name=> "bn", :value=> "PP-ShopCartBF" }

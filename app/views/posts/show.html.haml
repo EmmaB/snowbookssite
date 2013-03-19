@@ -1,0 +1,54 @@
+.container
+  .row
+    %header.box_theme#page_title
+      %h1 Our blog
+  .row-fluid
+    %aside.span4.box_theme#subtitle
+      %p.posted_by
+        = "posted on #{@post.created_at.strftime('%d %B %Y')}"
+        - if @post.user_id
+          = "by #{@post.user.first_name}"
+        = facebook_like
+        %p
+          = link_to "Back to the current blog", blog_webs_path
+
+        = semantic_form_for(@post) do |f|
+          = f.inputs :class => :main do
+            = f.input :company_id, :as => :hidden, :value => user_company_root.try(:id)
+            = f.input :user_id, :as => :hidden, :value => current_user.id, :required => true
+            = f.input :client_id, :as => :hidden, :value => current_user.client_id
+            = f.input :status, :label => false, :as => :select, :collection => ["Publish", "Draft"]
+            = f.submit "Update", :class => 'save'
+      %h2 Blog Archive
+      - @post_months.each do |month, posts|
+        %h4= month.strftime("%B %Y")
+        %ul
+          - posts.each do |post|
+            %li.post_links
+              = link_to post_path(post) do
+                = strip_tags(post.title)
+
+
+
+    %section.span8
+      .article.box_theme
+        %div{:id => "title", "data-mercury" => "full"}
+          %h2.blog_post_title= raw @post.title
+        %p
+          %div{:id => "body", "data-mercury" => "full"}
+            = raw @post.body
+        - unless @post.extended_body.blank?
+          %details.animated
+            %summary Read more...
+            %div{:id => "extended_body", "data-mercury" => "full"}
+              = raw @post.extended_body
+        %p
+          %div{:id => "excerpt", "data-mercury" => "full"}
+            = raw @post.excerpt
+        %hr
+        - unless @post.comments_count==0
+          %h3 Comments
+          - @post.comments.order('created_at DESC').try(:each) do |comment|
+            = raw sanitize simple_format comment.body
+            = "by #{comment.author} on #{comment.created_at.strftime('%d %B %Y')}"
+            %hr

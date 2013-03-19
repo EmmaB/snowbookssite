@@ -1,0 +1,22 @@
+%li.span2
+  .thumbnail
+    = link_to(web_path(summary[:web]), :class => "div-link") do 
+      = image_tag summary[:cover], :alt => "Cover Image", :size => summary[:cover_size], :class => :product_image
+    %h5  
+      - summary.each do |heading,value|
+        - next if heading.is_a? Symbol
+        - next if heading == "Author"
+        %br
+
+        = current_company_curr if heading == "Price"
+          
+        %span.summary_value
+          = truncate(value, :length => 31)
+      %br
+      %a{ :href => "#{amazon_url_helper(summary[:web].book, current_company() )}" } 
+        = image_tag "#{static_root}/amazon_icon.png"
+      = link_to image_tag("#{static_root}/add_to_shopping_cart.png"), web_path(summary[:web]) 
+      %hr
+      
+      
+ 

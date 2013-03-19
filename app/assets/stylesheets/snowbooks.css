@@ -1,0 +1,334 @@
+/* Structure & Typography */
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    color: #6e7575;  
+
+}
+section {
+    margin-top: 1em;
+    font-size: 120%;
+    padding: 20px;
+}
+body {
+    line-height: 1.5;
+    font-size: 75%;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: #6e7575;
+    background: url(http://www.snowbooks.com/wintertheme/antarctica_bg.jpg);
+    background-repeat:no-repeat;
+    background-position:top center;
+    margin: 0px; padding: 0px;
+
+}
+.white_rounded_background {
+	background-color: white;  
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	position: relative; 
+	top: 120px;
+	height: 2000px;
+}
+h1, h2, h3, h4, h5, h6, h7 {
+    font-weight: normal;
+    color: #111;
+}
+h1 {
+    font-size: 18pt; 
+    color: #2496c0; 
+    text-shadow: 0 0 0.2em #8398bb;
+}
+h2 {
+    font-size: 2em;
+    margin-bottom: 0.75em;
+}
+h5 {
+    color: darkred;
+    font-size: 135%;
+    font-weight: bold;
+}
+h6 {
+    font-size: 1em;
+    font-weight: bold;
+    color: #006699;
+        margin-bottom: -5px;
+}
+strong {
+    font-weight: bold;
+}
+
+/* Round corners */
+.round {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Tables*/
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 1.4em;
+    width: 100%;
+}
+
+/* Nav */
+ul.dropdown {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+/*make nav bar entries run horizontally not vertically:*/
+ul.dropdown li {
+    float: left;
+}
+ul.dropdown li.dir {
+    padding: 7px 20px 7px 14px;
+}
+ul.dropdown li.dir a {
+    color: #0f5d74;
+}
+ul.dropdown {
+    background-color: #9ee0f4;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    opacity: .8;
+    float: left; 
+    margin-left: 130px;
+    margin-top: 20px;
+	-moz-box-shadow: 2px 2px 3px #207a95;
+	-webkit-box-shadow: 2px 2px 3px #207a95;
+	box-shadow: 2px 2px 3px #207a95;}
+	
+td.topalign {
+    vertical-align: top;
+    width: 70%
+}
+
+/*search form fields */   
+ol.search input {
+	margin: 10px; 
+    background: #FFFFFF left top repeat-x;
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
+    color: #004b5c
+}
+ol.search label {
+  margin: 10px; 
+}
+
+/*  Links */
+a {
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+	color: #06a4d4;
+	-webkit-transition: all .1s linear;
+	-moz-transition: all .1s linear;
+	transition: all .1s linear;
+	text-decoration: none;
+	margin: 0;
+	padding: 1px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px
+}
+a:hover {
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(20,50,100,0.6)), to(rgba(6,164,212)), color-stop(0.5,rgba(30,60,125,0.6)));
+	color: #fff;
+	-webkit-transition-property: background-color, color;
+	-webkit-transition-duration: .5s .3s;
+	-webkit-transition-timing-function: linear;
+	background: #2bb0d1;
+	text-decoration: none;
+	padding: 1px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px
+}
+a.div-link {
+    background-color:white; 
+}
+a.div-link :hover{
+    background-color: #f9fefe; 
+}
+a.no_hover_background {
+	background-color: white; 
+}
+
+/* Pagination */
+.pagination {
+    background: #f7f7f7;
+    border: 1px solid #E5E5E5;
+    text-align: center;
+    padding: 5px;
+    margin: 0px -20px 20px -20px;
+    box-shadow: -2px -2px 2px #E5E5E5;
+}
+
+/*AI sidebar and center column*/
+td.sidebar2 {
+    width: 210px;
+    margin-top: 130px;
+    padding: 1em;
+    float: right;
+    vertical-align: top;
+    background: #c9eef7;
+}
+td.main {
+    width: 80%;
+    padding: 1em;
+    vertical-align: top;
+    padding-top: 82px;
+}
+td.sidebar2 img.cover {
+	margin-right:50px; 
+	margin-top:0px;
+}
+
+/*Cover images */
+img.cover {
+    float: right;
+    margin-left: 20px;
+    margin-top: 65px;
+    padding: 5px;
+    border: solid 1px #EFEFEF;
+    border: solid 1px #CCC;
+    -moz-box-shadow: 1px 1px 5px #999;
+    -webkit-box-shadow: 1px 1px 5px #999;
+    box-shadow: 1px 1px 5px #999;
+}
+div.image {
+    vertical-align:top;  
+}
+.image {
+    -moz-box-shadow: 3px 3px 10px 1px #8398bb;
+    -webkit-box-shadow: 3px 3px 10px 1px #8398bb;
+	box-shadow:  3px 3px 10px 1px #8398bb; 
+	height: 157px; 
+	margin: 0px 10px; 
+    display: inline-block;
+}
+
+/* Home page column settings */
+.colmain {
+    position: relative;
+    float: left;
+    overflow: hidden; 
+}
+.colouter,.colinner, .col1,.col2,.col3 {
+    float: left;
+    position: relative;
+}
+.colouter {
+    right: 25%; 
+}
+.colinner {
+    right: 50%; 
+    background-color: whitesmoke; 
+}
+.col1 {
+    width: 46%; 
+    left: 102%; 
+}
+.col2 {
+    width: 21%; 
+    left: 27%;
+    padding-left: 25px;
+}
+.col3 {
+    width: 21%;
+    left: 85%;
+}
+
+/* Home page right column boxes */
+.rightbox_wrapper {
+    background: #faf9f4;
+    padding: 5px;
+    line-height: 18px;
+}
+.rightbox {
+    border: 1px dashed #92a5a8;
+    width: 175px;
+    overflow: hidden;
+}
+.product_image {
+    margin: 6px 6px 6px 36px;
+}
+.product_wrapper {
+    float: right;
+    width: 150px;
+}
+
+/*Author page layout */
+.author_books_array {
+	border-radius: 5px;
+	border: solid thin lightblue; 
+	padding: 10px; 
+	margin-top: 10px;
+}
+.author_books_array p span {
+    font-size: 18pt; 
+    color: #2496c0; 
+    text-shadow: 0 0 0.2em #8398bb;
+}
+.author_books_array p span a {
+    padding-left: 20px;
+    font-size: 12pt;
+}
+
+/*Book display blocks */
+.summary_block {
+	border: solid gray thin; 
+	background: white;
+	padding: 10px; 
+	margin: 0px 10px 15px 0px; 
+	min-width: 430px; 
+	display: inline-block; 
+	box-shadow: 1px 1px 1px 1px #8398bb;
+	cursor: pointer;
+	border-radius: 5px;
+}
+.summary_text {
+    display: inline-block;
+    float: right;
+}
+.summary_line {
+	max-width: 240px;
+	text-align: right; 
+	white-space: nowrap;
+}
+span.summary_title {
+	color: lightblue;
+}
+span.summary_value {
+	font-weight: bold; 
+	font-size: +1; 
+	color: gray; 
+	text-align: right;
+}
+
+/* Footer styles */
+#footer {
+    clear: both;
+    float: left;
+    width: 100%;
+    border-top: 1px solid #000;
+}
+
+
+
+
+
+
+
+
+

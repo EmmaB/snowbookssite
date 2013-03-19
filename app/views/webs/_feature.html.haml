@@ -1,0 +1,39 @@
+= will_paginate features, :renderer => BootstrapPagination::Rails   
+#accordion2.accordion  
+  - features.each_with_index do |(cat_name, array_of_books), i|  
+    %h2
+      %ul#myTab.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#home"}= cat_name
+      
+      #myTabContent.tab-content
+        #home.tab-pane.fade.in.active
+          .row
+            .category_section
+            - array_of_books[0..5].each do |feature|
+              = link_to image_tag(feature[:cover], :class => "product_image_tiny"), web_path(feature[:web])
+            %section#category_fold  
+              %details.animated
+                %summary
+                  Details 
+                %p.gap
+                  - array_of_books.sort_by{ |k, v| k["Author"] }.each do |feature|
+                    %ul
+                      %li.span3
+                        .thumbnail
+                          %a{ :href=> web_path(feature[:web]), :class => "no_hover_background"}
+                            = image_tag feature[:cover], :alt => feature[:isbn_number], :class => "product_image"
+                            %h5  
+                              - feature.each do |heading,value|
+                                - next if heading.is_a? Symbol
+                                - next if heading == "Category"
+                                - next if heading == "Price"
+                                - next if heading == "Format"
+                                - next if heading == "Status"
+                                %br
+                                %span.summary_value
+                                  = value
+                            %a{ :href => "#{amazon_url_helper(feature[:web].book, current_company() )}" } 
+                              = image_tag "#{static_root}/amazon_icon.png"
+                            = link_to image_tag("#{static_root}/add_to_shopping_cart.png"), web_path(feature[:web]) 
+                            %hr

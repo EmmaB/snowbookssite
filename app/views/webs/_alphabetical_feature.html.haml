@@ -1,0 +1,19 @@
+- summaries.sort_by{ |k, v| k["Title"] }.each do |feature|  
+  %li.span2
+    .thumbnail
+      %a{ :href=> web_path(feature[:web]), :class => "no_hover_background"}
+        = image_tag feature[:cover], :alt => feature[:book_number], :class => "product_image"
+        %h5
+          - feature.each do |heading,value|
+            - next if heading.is_a? Symbol
+            - next if heading == "Category"
+            - next if heading == "Price"
+            - next if heading == "Format"
+            - next if heading == "Status"
+            %br
+            %span.summary_value
+              = value
+        %a{ :href => "#{amazon_url_helper(feature[:web].book, current_company() )}" } 
+          = image_tag "#{static_root}/amazon_icon.png"
+        = link_to image_tag("#{static_root}/add_to_shopping_cart.png"), web_path(feature[:web]) 
+        %hr

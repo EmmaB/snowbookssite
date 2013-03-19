@@ -1,0 +1,24 @@
+.container
+  .row
+    %header.box_theme#page_title
+      %h1 Our books, A-Z
+  .row
+    %aside.span4.box_theme#subtitle
+      %p 
+        = "This page contains all of our books. They're arranged alphabetically. If you click on the cover, you'll see more information about that book. "
+      %p
+        = link_to "Browse by category instead.", webs_path 
+      %p
+        = link_to "Browse by author instead.", author_index_webs_path
+      %p
+        = link_to "Look at our official catalogue.", catalogue_webs_path
+      = form_tag alphabetical_webs_path, method: :get do
+        %p
+          = text_field_tag :query, params[:query]
+          = submit_tag "Search", name: nil, :class => 'btn-success-narrow'
+
+    %section.span8    
+      .article.box_theme
+        = render :partial => "alphabetical_feature", :locals => { :summaries => @summaries }
+        
+

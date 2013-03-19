@@ -1,0 +1,16 @@
+.container
+  .row
+    %header.box_theme#page_title
+      %h1 Rights
+  .row
+    %aside.span4.box_theme#subtitle
+      %h2 
+        Licensing rights from
+        = "#{@company_name}" unless @company_name.nil?
+      %p
+        Information about the rights we hold in our titles, and how to sub-license from us. 
+      = raw Company.by_webname(request.subdomains.first).text( :contact )
+
+    %section.span8    
+      .article.box_theme
+        = render :partial => 'rights_guide', :locals => { :collection => Work.where("client_id = ? and status = ?", Client.find_by_webname(request.subdomains.first).id, "Live"), :user_company => @company_name}

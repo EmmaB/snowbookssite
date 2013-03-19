@@ -1,0 +1,23 @@
+.container
+
+  .row
+    %header.box_theme#page_title
+      = "#{@contact.names_before_key} #{@contact.keynames}"
+  .row
+    %aside.span4.box_theme#subtitle
+      %h2
+        #{"About #{@contact.names_before_key} #{@contact.keynames} "}
+      %p
+        A few more details about #{"#{@contact.names_before_key}"}.
+
+    %section.span8    
+      .article.box_theme
+
+        %p= @contact.biographical_note  
+        - if @contact.biographical_note.blank? then
+          - @features.each do |details|
+            %p= details[:bio]
+            - break unless details[:bio].blank?
+        =render :partial => 'summary', :collection => @features
+
+

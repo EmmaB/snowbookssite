@@ -1,0 +1,45 @@
+.container
+  .row
+    %header.box_theme#page_title
+      %h1 Our books
+  .row
+    %aside.span4.box_theme#subtitle
+      %p
+        = link_to "Browse alphabetically instead.", alphabetical_webs_path
+      %p
+        = link_to "Browse by author instead.", author_index_webs_path
+      %p
+        = link_to "Look at our official catalogue.", catalogue_webs_path
+      = form_tag webs_path, method: :get do
+        %p
+          = text_field_tag :query, params[:query]
+          = submit_tag "Search", name: nil, :class => 'btn-success-narrow'  
+      - @feature_root.each do |cat_name, array_of_books|  
+        %p
+          = link_to(cat_name  , :controller=>"webs"  , :action=>:single_cat       , :cat => cat_name)
+    %section.span8    
+      .article.box_theme
+        %h2
+          = @cat_name
+        %hr
+        - @single_cat.sort_by{ |k, v| k["Author"] }.each do |feature|
+          %li.span2
+            .thumbnail
+              %a{ :href=> web_path(feature[:web]), :class => "no_hover_background"}
+                = image_tag feature[:cover], :alt => feature[:book_number], :class => "product_image"
+                %h5  
+                  - feature.each do |heading,value|
+                    - next if heading.is_a? Symbol
+                    - next if heading == "Category"
+                    - next if heading == "Price"
+                    - next if heading == "Format"
+                    - next if heading == "Status"
+                    %br
+                    %span.summary_title
+                      = heading + ':'
+                    %span.summary_value
+                      = value
+                %a{ :href => "#{amazon_url_helper(feature[:web].book, current_company() )}" } 
+                  = image_tag "#{static_root}/amazon_icon.png"
+                = link_to image_tag("#{static_root}/add_to_shopping_cart.png"), web_path(feature[:web]) 
+                %hr

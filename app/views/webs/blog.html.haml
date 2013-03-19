@@ -1,0 +1,89 @@
+.container
+  .row
+    %header.box_theme#page_title
+      %h1 Our blog
+  .row
+    - if flash[:notice]
+      .p.notice
+        =flash[:notice]
+  .row
+    %aside.span4.box_theme#blog_links
+
+      = form_tag posts_path, method: :get do
+        %p
+          = text_field_tag :query, params[:query]
+          = submit_tag "Search", name: nil, :class => 'btn-success-narrow'
+      %h2 Blog Archive
+      - @post_months.each do |month, posts|
+        %h4= month.strftime("%B %Y")
+        %ul
+          - posts.each do |post|
+            %li.post_links
+              = link_to post_path(post) do
+                = strip_tags(post.title)
+    %section.span8.blog_posts
+      - @posts.limit(10).order('created_at DESC').each do |post|
+        .article.box_theme
+          %header
+            %h2.blog_post_title
+              = raw sanitize post.title
+          %p.posted_by
+            = "posted on "
+            %time{datetime: post.created_at.strftime('%FT$H:%M$z'), pubdate: ""}
+              = post.created_at.strftime('%d %B %Y')
+            - if post.user_id
+              = "by #{post.user.first_name}"
+          .blog_body
+            = raw post.body
+            %p
+            - unless post.extended_body.blank?
+              %details.animated
+                %summary Read more...
+                .blog_body
+                  = raw post.extended_body
+            %p
+              = raw post.excerpt
+            %hr
+          %section#blog_comments
+            = facebook_like_from_index(post)
+            %p
+              %details.animated
+                %summary
+                  = "#{pluralize(post.comments_count, 'comment')}"
+                - unless post.comments_count==0
+                  - post.comments.order('created_at asc').each do |comment|
+                    %article#blog_comments
+                      = raw sanitize simple_format comment.body
+                      %footer.posted_by
+                        = "by #{comment.author} on "
+                        %time{datetime: post.created_at.strftime('%FT$H:%M$z'), pubdate: ""}
+                          = comment.created_at.strftime('%d %B %Y')
+                = semantic_form_for([post, post.comments.build]) do |f|
+                  = f.input :body, :label => 'Add a comment'
+                  = f.input :author, :label => 'Your name'
+                  = f.input :email, :label => 'Your email (will not be published)'
+                  = f.input :ip, :label => "To prove you are human, answer yes or no: was Jane Eyre an author?", :class => :narrow
+
+                  = f.actions  do
+                    = f.submit "Post comment", :class => 'save'
+-if request.fullpath.match(/codicology/)
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1&appId=239528472835438";
+  fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
+- elsif request.fullpath.match(/bibliocloud/)
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1&appId=333040396780339";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+

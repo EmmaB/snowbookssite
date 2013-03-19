@@ -1,0 +1,7 @@
+%h6 
+  About 
+  = sanitize contributor[:name]
+%table
+  %tr
+    %p
+      !=  escape_once contributor[:bio]
