@@ -55,4 +55,16 @@ class Post < ActiveRecord::Base
     posts.group_by { |t| t.created_at.beginning_of_month }.sort.reverse
   end
 
+
+  def self.rename_all_img_roots
+    Post.all.each do |post|
+      if post.body
+        post.body           = post.body.gsub(/http:\/\/www.snowbooks.com\/weblog\/(.*.jpg)/, 'https://s3-eu-west-1.amazonaws.com/bibliocloudimages/snowblog/\1')
+      end
+      if post.extended_body
+        post.extended_body  = post.extended_body.gsub(/http:\/\/www.snowbooks.com\/weblog\/(.*.jpg)/, 'https://s3-eu-west-1.amazonaws.com/bibliocloudimages/snowblog/\1')
+      end
+      post.save
+    end
+  end
 end
